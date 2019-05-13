@@ -30,7 +30,7 @@ class HomeController extends Controller
 	
 	public function view_kelompok()
 	{
-		$data = Kelompok::all();
+		$data = Kelompok::with('nomor')->get();
 		return view('index_kelompok', compact('data'));
 	}
 	

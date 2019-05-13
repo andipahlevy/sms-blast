@@ -63,7 +63,7 @@
 				<tr>
 					<td>{{ $data->nama_kelompok }}</td>
 					<td>{{ $data->deskripsi }}</td>
-					<td>10</td>
+					<td>{{ count($data->nomor) }}</td>
 					<td>
 						<a href="{{ route('data.kelompok.edit', $data->id) }}">
 							<button type="button" class="btn btn-info btn-xs"><i class="icon-pencil7"></i> Edit</button>

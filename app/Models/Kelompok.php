@@ -12,4 +12,9 @@ class Kelompok extends Model
 		'nama_kelompok',
 		'deskripsi',
 	]; 
+	
+	public function nomor()
+    {
+        return $this->hasMany('App\Models\Nomor', 'id_kelompok');
+    }
 }
