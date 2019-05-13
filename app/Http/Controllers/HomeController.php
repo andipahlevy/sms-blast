@@ -128,14 +128,15 @@ class HomeController extends Controller
 	// start nomor 
 	public function view_nomor($id)
 	{
-		
+		$kelompok = Kelompok::find($id);
 		$data = Nomor::where('id_kelompok',$id)->get();
-		return view('index_nomor', compact('data'));
+		return view('index_nomor', compact('data','kelompok'));
 	}
 	
-	public function form_nomor()
+	public function form_nomor($id)
 	{
-		return view('form_nomor');
+		$kelompok = Kelompok::find($id);
+		return view('form_nomor', compact('kelompok'));
 	}
 	
 	public function save_nomor(Request $request)
@@ -184,7 +185,6 @@ class HomeController extends Controller
 	public function edit_nomor($id)
 	{
 		try {
-            
 			$data = Nomor::find($id);
 			
 			
