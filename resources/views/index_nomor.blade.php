@@ -15,7 +15,7 @@
 <!-- Basic datatable -->
 	<div class="panel panel-flat">
 		<div class="panel-heading">
-			<h5 class="panel-title">Kelola Data Kelompok (OPD)</h5>
+			<h5 class="panel-title">Kelola Data Nomor HP</h5>
 			<div class="heading-elements">
 				<ul class="icons-list">
 					<li><a data-action="collapse"></a></li>
@@ -26,7 +26,7 @@
 		</div>
 
 		<div class="panel-body">
-			<a href="{{ route('data.kelompok.add') }}">
+			<a href="{{ route('data.nomor.add', Request::segment(2)) }}">
 				<button type="button" class="btn bg-teal-400 btn-labeled"><b><i class="icon-plus3"></i></b> 
 					Tambah Data
 				</button>
@@ -52,31 +52,28 @@
 		<table class="table datatable-basic">
 			<thead>
 				<tr>
-					<th>Nama Kelompok</th>
-					<th>Deskripsi</th>
-					<th>Jumlah No. Telp</th>
-					<th class="text-center" colspan="3">Aksi</th>
+					<th>No</th>
+					<th>Nama Pegawai</th>
+					<th>NIP</th>
+					<th>Nomor HP</th>
+					<th class="text-center" colspan="2">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($data as $data)
+				@foreach($data as $k=>$data)
 				<tr>
-					<td>{{ $data->nama_kelompok }}</td>
-					<td>{{ $data->deskripsi }}</td>
-					<td>10</td>
-					<td>
-						<a href="{{ route('data.kelompok.edit', $data->id) }}">
+					<td>{{ $k+1 }}</td>
+					<td>{{ $data->nama_anggota }}</td>
+					<td>{{ $data->nip }}</td>
+					<td>{{ $data->nohp }}</td>
+					<td class="text-center" >
+						<a href="{{ route('data.nomor.edit', $data->id) }}">
 							<button type="button" class="btn btn-info btn-xs"><i class="icon-pencil7"></i> Edit</button>
 						</a>
 					</td>
-					<td>
-						<a onclick="return confirm('Apakah anda benar ingin menghapus data ini?')" href="{{ route('data.kelompok.delete', ['id'=>$data->id]) }}">
+					<td class="text-center" >
+						<a onclick="return confirm('Apakah anda benar ingin menghapus data ini?')" href="{{ route('data.nomor.delete', ['id_kelompok'=>Request::segment(2), 'id'=>$data->id]) }}">
 							<button type="button" class="btn btn-info btn-xs"><i class="icon-trash"></i> Hapus</button>
-						</a>
-					</td>
-					<td>
-						<a href="{{ route('data.nomor', $data->id) }}">
-							<button type="button" class="btn btn-info btn-xs"><i class="icon-address-book"></i> Daftar No. Telp</button>
 						</a>
 					</td>
 				</tr>

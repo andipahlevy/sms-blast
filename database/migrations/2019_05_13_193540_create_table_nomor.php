@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableKelompok extends Migration
+class CreateTableNomor extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTableKelompok extends Migration
      */
     public function up()
     {
-        Schema::create('kelompok', function (Blueprint $table) {
+        Schema::create('nomor', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama_kelompok',255);
-            $table->text('deskripsi')->nullable();            
+            $table->string('nama_anggota',255);
+            $table->string('nip',255);
+            $table->string('nohp',255); 
+            $table->integer('id_kelompok'); 
 			$table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateTableKelompok extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kelompok');
+        Schema::dropIfExists('nomor');
     }
 }
