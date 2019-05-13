@@ -3,15 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SMS;
+use App\Models\Campaign;
+use App\Models\Kelompok;
 
 class SMSController extends Controller
 {
     
-	public function smslist()
+	public function list()
 	{
-		$data = SMS::all();
-		return view('index_sms', compact('data'));
+		$data = Campaign::with('kelompok')->get();
+		return view('index_campaign', compact('data'));
+	}
+	
+	public function create_campaign()
+	{
+		$kelompok = Kelompok::all();
+		return view('form_campaign', compact('kelompok'));
+	}
+	
+	public function send_campaign()
+	{
+		dd(123);
 	}
 	
 }

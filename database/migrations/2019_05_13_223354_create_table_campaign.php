@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableNomor extends Migration
+class CreateTableCampaign extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateTableNomor extends Migration
      */
     public function up()
     {
-        Schema::create('nomor', function (Blueprint $table) {
+        Schema::create('campaign', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('id_kelompok');
-            $table->string('nama_anggota',255);
-            $table->string('nip',255);
-            $table->string('nohp',255);  
+            $table->string('campaign_text',200);
+			
 			$table->foreign('id_kelompok')->references('id')->on('kelompok');
+			
 			$table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateTableNomor extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nomor');
+        Schema::dropIfExists('campaign');
     }
 }

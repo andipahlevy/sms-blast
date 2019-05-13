@@ -15,7 +15,7 @@
 <!-- Basic datatable -->
 	<div class="panel panel-flat">
 		<div class="panel-heading">
-			<h5 class="panel-title">Data SMS</h5>
+			<h5 class="panel-title">Data Campaign SMS</h5>
 			<div class="heading-elements">
 				<ul class="icons-list">
 					<li><a data-action="collapse"></a></li>
@@ -26,9 +26,9 @@
 		</div>
 
 		<div class="panel-body">
-			<a href="{{ route('data.kelompok.add') }}">
+			<a href="{{ route('sms.create') }}">
 				<button type="button" class="btn bg-teal-400 btn-labeled"><b><i class="icon-plus3"></i></b> 
-					Kirim SMS
+					Kirim Campaign SMS
 				</button>
 			</a>
 			
@@ -63,11 +63,11 @@
 				<tr>
 					<td>{{ $data->to }}</td>
 					<td>{{ $data->body }}</td>
-					<td>{{ $data->status }}</td>
+					<td></td>
 					<td>
 						<a href="">
 							<button type="button" class="btn btn-info btn-xs">
-								<i class="icon-pencil7"></i> Aksi
+								<i class="icon-pencil7"></i> Detail
 							</button>
 						</a>
 					</td>
