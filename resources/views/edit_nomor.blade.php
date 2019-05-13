@@ -48,7 +48,10 @@
 			
 			<div class="form-group">
 				<label>Nomor HP:</label>
-				<input type="number" class="form-control" required placeholder="Masukkan no hp" name="nohp" value="{{ old('nohp')?: $data->nohp }}"/>
+				<div class="input-group">
+					<span class="input-group-addon">+62</span>
+					<input type="number" class="form-control" required placeholder="853XXXXXXXX" name="nohp" value="{{ old('nohp')?: substr($data->nohp,2) }}"/>
+				</div>
 			</div>
 			
 			<div class="text-right">

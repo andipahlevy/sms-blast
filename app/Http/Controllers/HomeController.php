@@ -140,8 +140,10 @@ class HomeController extends Controller
 	
 	public function save_nomor(Request $request)
 	{
+		$data = $request->all();
+		$data['nohp'] = '62'.$request->nohp;
 		try {
-            Nomor::create($request->all());
+            Nomor::create($data);
 			
 		}catch (\Throwable $e) {
             $msg = 'Terjadi kesalahan pada backend ->'.$e->getMessage();
@@ -204,7 +206,7 @@ class HomeController extends Controller
             
 			$data = Nomor::findOrFail($request->id);
 			$data->nama_anggota = $request->nama_anggota;
-			$data->nohp = $request->nohp;
+			$data->nohp = '62'.$request->nohp;
 			$data->nip = $request->nip;
 			$data->save();
 		}catch (\Throwable $e) {
