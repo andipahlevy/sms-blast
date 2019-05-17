@@ -52,18 +52,20 @@
 		<table class="table datatable-basic">
 			<thead>
 				<tr>
-					<th>Tujuan</th>
-					<th>Pesan</th>
-					<th>Status</th>
+					<th>No</th>
+					<th>ID Campaign</th>
+					<th>Tujuan (Bidang Kantor)</th>
+					<th>Isi SMS</th>
 					<th class="text-center">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($data as $data)
+				@foreach($data as $k=>$data)
 				<tr>
-					<td>{{ $data->to }}</td>
-					<td>{{ $data->body }}</td>
-					<td></td>
+					<td>{{ $k+1 }}</td>
+					<td>{{ $data->id }}</td>
+					<td>{{ $data->kelompok->nama_kelompok }} - {{ $data->kelompok->deskripsi }}</td>
+					<td>{{ $data->campaign_text }}</td>
 					<td>
 						<a href="">
 							<button type="button" class="btn btn-info btn-xs">

@@ -68,15 +68,17 @@ function textCounter(field, cnt, maxlimit) {
 			<div class="form-group">
 				<label>Isi SMS:</label>
 				<textarea 
+					required
+					name="campaign_text"
 					id="q17"
-					onKeyDown="textCounter(this,'q17length',160);"
-					onKeyUp="textCounter(this,'q17length',160)"
-					rows="5" cols="5" maxlength="160" class="form-control" 
+					onKeyDown="textCounter(this,'q17length',129);"
+					onKeyUp="textCounter(this,'q17length',129)"
+					rows="5" cols="5" maxlength="129" class="form-control" 
 					placeholder="Isi SMS" name="campaign_text">{{ old('campaign_text') }}</textarea>
 			</div>
 			
 			<div class="form-group">
-				<input style="" readonly="readonly" type="text" id='q17length' name="q17length" size="3" maxlength="3" value="500" /> characters left</i>
+				<input style="" readonly="readonly" type="text" id='q17length' name="q17length" size="3" maxlength="3" value="" /> characters left</i>
 			</div>
 			
 			<div class="text-right">

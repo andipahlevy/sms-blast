@@ -15,6 +15,6 @@ class Campaign extends Model
 	
 	public function kelompok()
 	{
-		return $this->belongsTo('App\Models\User', 'id_kelompok');
+		return $this->belongsTo('App\Models\Kelompok', 'id_kelompok');
 	}
 }

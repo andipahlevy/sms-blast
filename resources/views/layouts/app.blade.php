@@ -93,7 +93,7 @@
 
 					<ul class="dropdown-menu dropdown-menu-right">
 						<li><a href="#"><i class="icon-user-plus"></i> Profil</a></li>
-						<li><a href="#"><i class="icon-coins"></i> Saldo</a></li>
+						<li><a href="#"><i class="icon-coins"></i> <span id="saldoku">0</span></a></li>
 						<li class="divider"></li>
 						<li><a href="#"><i class="icon-cog5"></i> Pengaturan</a></li>
 						<li><a href="{{ route('logout') }}"
@@ -195,6 +195,21 @@
 
 	</div>
 	<!-- /page container -->
+	
+	<script type="text/javascript">
+	
+	$.ajax({
+		type:'post',
+		url:'{{ route("nexmo.saldoku") }}',
+		data:'',
+		cache:false,
+		success:function(rsp){
+			$('#saldoku').html(rsp);
+		}
+	});
+	
+	</script>
+	
 	@yield('my_script')
 </body>
 </html>

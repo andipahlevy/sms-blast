@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableSms extends Migration
+class CreateTableNexmo extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateTableSms extends Migration
      */
     public function up()
     {
-        Schema::create('sms', function (Blueprint $table) {
+        Schema::create('nexmo', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('body',200);
-            $table->string('to',20);
-            $table->string('message_id',255); 
-            $table->string('message_price',255); 
-            $table->integer('status'); 
-			$table->timestamps();
+            $table->string('NEXMO_API_KEY',100)->nullable();
+            $table->string('NEXMO_API_SECRET',100)->nullable();
+            $table->string('remaining_balance',100)->nullable();
+            $table->timestamps();
         });
     }
 
@@ -31,6 +29,6 @@ class CreateTableSms extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sms');
+        Schema::dropIfExists('nexmo');
     }
 }
