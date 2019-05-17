@@ -16,6 +16,19 @@
 <!-- /theme JS files -->
 @endsection
 
+@section('my_script')
+<script type="text/javascript">
+function textCounter(field, cnt, maxlimit) {         
+  var cntfield = document.getElementById(cnt)   
+  if (field.value.length > maxlimit) // if too long...trim it!
+    field.value = field.value.substring(0, maxlimit);
+    // otherwise, update 'characters left' counter
+  else
+    cntfield.value = maxlimit - field.value.length;
+}
+</script>
+@endsection
+
 @section('content')
 
 <!-- Basic datatable -->
@@ -40,6 +53,7 @@
 					<span class="text-semibold">Terjadi kesalahan!</span> {{ \Session::get('error') }}
 				</div>
 			@endif
+			
 			<div class="form-group">
 				<label>Tujuan:</label>
 				<select name="id_kelompok" id="" class="select-search">
@@ -53,7 +67,16 @@
 			
 			<div class="form-group">
 				<label>Isi SMS:</label>
-				<textarea rows="5" cols="5" class="form-control" placeholder="Isi SMS" name="campaign_text">{{ old('campaign_text') }}</textarea>
+				<textarea 
+					id="q17"
+					onKeyDown="textCounter(this,'q17length',160);"
+					onKeyUp="textCounter(this,'q17length',160)"
+					rows="5" cols="5" maxlength="160" class="form-control" 
+					placeholder="Isi SMS" name="campaign_text">{{ old('campaign_text') }}</textarea>
+			</div>
+			
+			<div class="form-group">
+				<input style="" readonly="readonly" type="text" id='q17length' name="q17length" size="3" maxlength="3" value="500" /> characters left</i>
 			</div>
 			
 			<div class="text-right">
