@@ -65,7 +65,7 @@
 				<tr>
 					<td>{{ $k+1 }}</td>
 					<td>{{ $data->id }}</td>
-					<td>{{ $data->created_at }}</td>
+					<td>{{ date_format($data->created_at,'d-m-Y') }}</td>
 					<td>{{ $data->kelompok->nama_kelompok }} - {{ $data->kelompok->deskripsi }}</td>
 					<td>{{ $data->campaign_text }}</td>
 					<td>
