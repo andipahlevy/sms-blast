@@ -199,8 +199,8 @@
 	<script type="text/javascript">
 	
 	$.ajax({
-		type:'post',
-		url:'{{ route("nexmo.saldoku") }}',
+		type:'get',
+		url:"{{ route('nexmo.saldoku') }}",
 		data:'',
 		cache:false,
 		success:function(rsp){

@@ -47,7 +47,7 @@ Route::group(['prefix'=>'sms'], function () {
 });
 Route::group(['prefix'=>'nexmo'], function () {
 				
-	Route::post('/saldoku', ['as'=>'nexmo.saldoku', 'uses'=>'NexmoController@saldoku']);
+	Route::get('/saldoku', ['as'=>'nexmo.saldoku', 'uses'=>'NexmoController@saldoku']);
 	
 });
 
