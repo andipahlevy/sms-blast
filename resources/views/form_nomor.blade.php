@@ -17,8 +17,9 @@
 	@csrf
 	<div class="panel panel-flat">
 		<div class="panel-heading">
-			<h5 class="panel-title">Form Tambah Data Kotak Pegawai</h5>
-			<h4>{{ $kelompok->nama_kelompok }}</h4>
+			<h6 class="panel-title">Form Tambah Data Kotak Pegawai</h6>
+			<h5>{{ $kelompok->nama_kelompok }}</h5>
+			<h4>{{ $kelompok->deskripsi }}</h4>
 			<div class="heading-elements">
 				<ul class="icons-list">
 					<li><a data-action="collapse"></a></li>

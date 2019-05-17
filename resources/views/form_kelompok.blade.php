@@ -35,12 +35,12 @@
 				</div>
 			@endif
 			<div class="form-group">
-				<label>Nama Kelompok:</label>
+				<label>Nama Kantor:</label>
 				<input type="text" name="nama_kelompok" value="{{ old('nama_kelompok') }}" required class="form-control" placeholder="Nama Kelompok">
 			</div>
 			
 			<div class="form-group">
-				<label>Deskripsi Kelompok:</label>
+				<label>Bidang Kantor:</label>
 				<textarea rows="5" cols="5" class="form-control" placeholder="Masukkan deskripsi" name="deskripsi">{{ old('deskripsi') }}</textarea>
 			</div>
 			

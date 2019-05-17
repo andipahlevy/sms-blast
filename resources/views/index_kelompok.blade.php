@@ -52,8 +52,8 @@
 		<table class="table datatable-basic">
 			<thead>
 				<tr>
-					<th>Nama Kelompok</th>
-					<th>Deskripsi</th>
+					<th>Nama Kantor</th>
+					<th>Bidang Kantor</th>
 					<th>Jumlah No. Telp</th>
 					<th class="text-center" colspan="3">Aksi</th>
 				</tr>

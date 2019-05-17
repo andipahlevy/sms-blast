@@ -7,6 +7,12 @@
 
 <script type="text/javascript" src="{{ asset('limitless/js/core/app.js') }}"></script>
 <script type="text/javascript" src="{{ asset('limitless/js/pages/form_layouts.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('limitless/js/core/libraries/jquery_ui/interactions.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('limitless/js/plugins/forms/selects/select2.min.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('limitless/js/core/app.js') }}"></script>
+<script type="text/javascript" src="{{ asset('limitless/js/pages/form_select2.js') }}"></script>
 <!-- /theme JS files -->
 @endsection
 
@@ -36,12 +42,13 @@
 			@endif
 			<div class="form-group">
 				<label>Tujuan:</label>
-				<select name="id_kelompok" id="" class="form-control">
+				<select name="id_kelompok" id="" class="select-search">
 					<option value="">-- Pilih --</option>
 					@foreach($kelompok as $klp)
-					<option value="{{ $klp->id }}"> {{ $klp->nama_kelompok }} </option>
+					<option value="{{ $klp->id }}"> {{ $klp->nama_kelompok }} - {{ $klp->deskripsi }} </option>
 					@endforeach
 				</select>
+				
 			</div>
 			
 			<div class="form-group">

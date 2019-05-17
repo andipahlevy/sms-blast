@@ -185,6 +185,7 @@ class HomeController extends Controller
 	public function edit_nomor($id)
 	{
 		try {
+			$kelompok = Kelompok::find($id);
 			$data = Nomor::find($id);
 			
 			
@@ -197,7 +198,7 @@ class HomeController extends Controller
 			\Session::flash('error', $msg);
             return redirect()->back();
 		}
-		return view('edit_nomor', compact('data'));
+		return view('edit_nomor', compact('data','kelompok'));
 	}
 	
 	public function update_nomor(Request $request)
