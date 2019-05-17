@@ -16,7 +16,7 @@ class CreateTableKelompok extends Migration
         Schema::create('kelompok', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_kelompok',255);
-            $table->text('deskripsi')->nullable();            
+            $table->text('deskripsi')->nullable()->onDelete('cascade');            
 			$table->timestamps();
         });
     }
