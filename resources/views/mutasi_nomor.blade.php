@@ -40,6 +40,15 @@
 			<input type="hidden" name="id" value="{{ $data->id }}"/>
 			
 			<div class="form-group">
+				<label>Nama pegawai:</label>
+				<input type="text" value="{{ $data->nama_anggota }}" readonly class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label>NIP:</label>
+				<input type="text" value="{{ $data->nip }}" readonly class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label>Kantor / Bagian:</label>
 				<select name="id_kelompok" id="" class="select-search">
 					<option value="">-- Pilih --</option>
 					@foreach($kelompok as $klp)
