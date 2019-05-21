@@ -58,7 +58,7 @@
 					<th>Nama Pegawai</th>
 					<th>NIP</th>
 					<th>Nomor HP</th>
-					<th class="text-center" colspan="2">Aksi</th>
+					<th class="text-center" colspan="3">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -76,6 +76,11 @@
 					<td class="text-center" >
 						<a onclick="return confirm('Apakah anda benar ingin menghapus data ini?')" href="{{ route('data.nomor.delete', ['id_kelompok'=>Request::segment(2), 'id'=>$data->id]) }}">
 							<button type="button" class="btn btn-info btn-xs"><i class="icon-trash"></i> Hapus</button>
+						</a>
+					</td>
+					<td class="text-center" >
+						<a href="{{ route('data.nomor.mutasi', $data->id) }}">
+							<button type="button" class="btn btn-info btn-xs"><i class="icon-pencil7"></i> Ganti Kantor/Bidang</button>
 						</a>
 					</td>
 				</tr>

@@ -201,6 +201,25 @@ class HomeController extends Controller
 		return view('edit_nomor', compact('data','kelompok'));
 	}
 	
+	public function mutasi_nomor($id)
+	{
+		try {
+			$kelompok = Kelompok::all();
+			$data = Nomor::find($id);
+			
+			
+		}catch (\Throwable $e) {
+            $msg = 'Terjadi kesalahan pada backend ->'.$e->getMessage();
+			\Session::flash('error', $msg);
+            return redirect()->back();
+        }catch (\Exception $e) {
+            $msg = 'Terjadi kesalahan sistem silahkan tunggu beberapa saat dan ulangi kembali. Error messages ->'.$e->getMessage();
+			\Session::flash('error', $msg);
+            return redirect()->back();
+		}
+		return view('mutasi_nomor', compact('data','kelompok'));
+	}
+	
 	public function update_nomor(Request $request)
 	{
 		try {
@@ -222,6 +241,29 @@ class HomeController extends Controller
 		
 		\Session::flash('success', 'Berhasil mengubah data data');
         return redirect()->route('data.nomor', $data->id_kelompok);
+		
+	}
+	
+	public function mutasikan_nomor(Request $request)
+	{
+		try {
+            
+			$data = Nomor::findOrFail($request->id);
+			$old_id_kelompok = $data->id_kelompok;
+			$data->id_kelompok = $request->id_kelompok;
+			$data->save();
+		}catch (\Throwable $e) {
+            $msg = 'Terjadi kesalahan pada backend ->'.$e->getMessage();
+			\Session::flash('error', $msg);
+            return redirect()->back()->withInput($request->input());
+        }catch (\Exception $e) {
+            $msg = 'Terjadi kesalahan sistem silahkan tunggu beberapa saat dan ulangi kembali. Error messages ->'.$e->getMessage();
+			\Session::flash('error', $msg);
+            return redirect()->back()->withInput($request->input());
+		}
+		
+		\Session::flash('success', 'Berhasil mutasi data');
+        return redirect()->route('data.nomor', $old_id_kelompok);
 		
 	}
 	

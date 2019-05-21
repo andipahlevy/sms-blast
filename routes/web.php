@@ -35,7 +35,9 @@ Route::group(['prefix'=>'data'], function () {
 	Route::post('/{id}/nomor/save', ['as'=>'data.nomor.save', 'uses'=>'HomeController@save_nomor']);
 	Route::get('/{id_kelompok}/nomor/delete/{id}', ['as'=>'data.nomor.delete', 'uses'=>'HomeController@delete_nomor']);
 	Route::get('/nomor/edit/{id}', ['as'=>'data.nomor.edit', 'uses'=>'HomeController@edit_nomor']);
+	Route::get('/nomor/mutasi/{id}', ['as'=>'data.nomor.mutasi', 'uses'=>'HomeController@mutasi_nomor']);
 	Route::post('/nomor/update', ['as'=>'data.nomor.update', 'uses'=>'HomeController@update_nomor']);
+	Route::post('/nomor/mutasikan', ['as'=>'data.nomor.mutasikan', 'uses'=>'HomeController@mutasikan_nomor']);
 	
 });
 Route::group(['prefix'=>'sms'], function () {
