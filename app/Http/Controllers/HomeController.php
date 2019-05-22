@@ -185,8 +185,8 @@ class HomeController extends Controller
 	public function edit_nomor($id)
 	{
 		try {
-			$kelompok = Kelompok::find($id);
 			$data = Nomor::find($id);
+			$kelompok = Kelompok::find($data->id_kelompok);
 			
 			
 		}catch (\Throwable $e) {
