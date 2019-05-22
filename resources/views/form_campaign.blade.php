@@ -83,7 +83,7 @@ function textCounter(field, cnt, maxlimit) {
 			
 			<div class="form-group">
 			
-				<label for="" id="kuota_info">Sisa kuota sms anda 0</label>
+				<label for="" id="kuota_info">Pulsa anda: 0</label>
 			
 			</div>
 			
