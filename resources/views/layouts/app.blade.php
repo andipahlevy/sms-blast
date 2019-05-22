@@ -92,10 +92,8 @@
 					</a>
 
 					<ul class="dropdown-menu dropdown-menu-right">
-						<li><a href="#"><i class="icon-user-plus"></i> Profil</a></li>
-						<li><a href="#"><i class="icon-coins"></i> <span id="saldoku">0</span></a></li>
+						<li title="Kuota kirim SMS tersisa"><a href="#"><i class="icon-coins"></i> <span id="saldoku">0</span></a></li>
 						<li class="divider"></li>
-						<li><a href="#"><i class="icon-cog5"></i> Pengaturan</a></li>
 						<li><a href="{{ route('logout') }}"
 								onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
@@ -155,9 +153,8 @@
 								<li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
 								<li><a href="{{ route('home') }}"><i class="icon-home4"></i> <span>Beranda</span></a></li>
 								<li><a href="{{ route('data.kelompok') }}"><i class="icon-list3"></i> <span>Kelola Data Kelompok & No. HP</span></a></li>
-								<li><a href="{{ route('sms') }}"><i class="icon-mobile"></i> <span>Blast SMS</span></a></li>
 								<li class="navigation-divider"></li>
-								<li><a href="index.html"><i class="icon-mail-read"></i> <span>Permintaan Ganti Nomor</span></a></li>
+								<li><a href="{{ route('sms') }}"><i class="icon-mobile"></i> <span>Blast SMS</span></a></li>
 								
 
 							</ul>
