@@ -81,6 +81,12 @@ function textCounter(field, cnt, maxlimit) {
 				<input style="" readonly="readonly" type="text" id='q17length' name="q17length" size="3" maxlength="3" value="" /> characters left</i>
 			</div>
 			
+			<div class="form-group">
+			
+				<label for="" id="kuota_info">Sisa kuota sms anda 0</label>
+			
+			</div>
+			
 			<div class="text-right">
 				<button type="submit" class="btn btn-primary">Kirim <i class="icon-arrow-right14 position-right"></i></button>
 			</div>

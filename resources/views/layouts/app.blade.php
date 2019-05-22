@@ -202,6 +202,9 @@
 		cache:false,
 		success:function(rsp){
 			$('#saldoku').html(rsp);
+			if($('#kuota_info').length > 0){
+				$('#kuota_info').html('Sisa kuota sms anda '+rsp+' kali');
+			}
 		}
 	});
 	
