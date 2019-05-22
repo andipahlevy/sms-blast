@@ -10,8 +10,8 @@ class NexmoController extends Controller
     public function saldoku()
 	{
 		$nexmo = Nexmo::find(1);
-		$last_price = (int)($nexmo->last_price ?? 1);
-		$quota = round( (int)$nexmo->remaining_balance/$last_price );
+		$last_price = ($nexmo->last_price ?? 1);
+		$quota = round( $nexmo->remaining_balance/$last_price );
 		echo $nexmo->remaining_balance.'  ('.$quota.' SMS)';
 	}
 }
