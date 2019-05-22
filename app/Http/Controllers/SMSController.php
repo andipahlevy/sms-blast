@@ -51,6 +51,7 @@ class SMSController extends Controller
 					$status 		= 1;
 					
 					$remaining_balance = $resp['contents']['remaining-balance'];
+					$last_price = $resp['contents']['message-price'];
 					
 				}else if( $resp['code'] == 2 ){
 					$status 		= 0;
@@ -77,6 +78,7 @@ class SMSController extends Controller
 			if( $remaining_balance != null ){
 				$N = Nexmo::find( 1 );
 				$N->remaining_balance = $remaining_balance;
+				$N->last_price = $last_price;
 				$N->save();	
 			}
 			
