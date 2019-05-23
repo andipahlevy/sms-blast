@@ -38,6 +38,8 @@ Route::group(['prefix'=>'data'], function () {
 	Route::get('/nomor/mutasi/{id}', ['as'=>'data.nomor.mutasi', 'uses'=>'HomeController@mutasi_nomor']);
 	Route::post('/nomor/update', ['as'=>'data.nomor.update', 'uses'=>'HomeController@update_nomor']);
 	Route::post('/nomor/mutasikan', ['as'=>'data.nomor.mutasikan', 'uses'=>'HomeController@mutasikan_nomor']);
+	Route::get('/nomor/upload/{id}', ['as'=>'data.nomor.upload', 'uses'=>'HomeController@upload_nomor']);
+	Route::post('/nomor/save_upload/{id}', ['as'=>'data.nomor.save_upload', 'uses'=>'HomeController@save_upload']);
 	
 });
 Route::group(['prefix'=>'sms'], function () {

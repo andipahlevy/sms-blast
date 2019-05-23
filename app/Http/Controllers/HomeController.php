@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kelompok;
 use App\Models\Nomor;
+use Excel;
 
 class HomeController extends Controller
 {
@@ -160,6 +161,7 @@ class HomeController extends Controller
         return redirect()->route('data.nomor', $request->id_kelompok);
 		
 	}
+	
 	public function delete_nomor($id_kelompok, $id)
 	{
 		try {
@@ -267,4 +269,51 @@ class HomeController extends Controller
 		
 	}
 	
+	
+	
+	public function upload_nomor($id)
+	{
+		
+		$kelompok = Kelompok::find($id);
+		return view('form_upload_nomor', compact('kelompok'));
+		
+	}
+	public function save_upload(Request $request)
+	{
+		try {
+			$file = $request->file('filenomor');
+			$path = $file->getRealPath();
+			$data = Excel::load($path)->get();
+			
+			if($data->count()){
+				foreach ($data as $k=>$value) {
+					
+					$number = $value->nomor_hp;
+					$country_code = '62';
+					$new_number = substr_replace($number, $country_code, 0, ($number[0] == '0'));
+					$data = [
+						 'nama_anggota'	=> $value->nama_lengkap
+						,'nip'	=> $value->nip
+						,'nohp'	=> $new_number
+						,'id_kelompok'	=> $request->id_kelompok
+					];
+					Nomor::create($data);
+				
+				}
+				
+				
+			}
+		}catch (\Throwable $e) {
+            $msg = 'Terjadi kesalahan pada backend ->'.$e->getMessage();
+			\Session::flash('error', $msg);
+            return redirect()->back();
+        }catch (\Exception $e) {
+            $msg = 'Terjadi kesalahan sistem silahkan tunggu beberapa saat dan ulangi kembali. Error messages ->'.$e->getMessage();
+			\Session::flash('error', $msg);
+            return redirect()->back();
+		}
+		
+		\Session::flash('success', 'Berhasil menyimpan data');
+        return redirect()->route('data.nomor', $request->id_kelompok);
+	}
 }

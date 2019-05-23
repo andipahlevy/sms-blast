@@ -33,6 +33,11 @@
 					Tambah Data
 				</button>
 			</a>
+			<a href="{{ route('data.nomor.upload', Request::segment(2)) }}">
+				<button type="button" class="btn bg-teal-400 btn-labeled"><b><i class="icon-plus3"></i></b> 
+					Import Data
+				</button>
+			</a>
 			
 			<div class="pb-5"></div>
 			
