@@ -287,17 +287,19 @@ class HomeController extends Controller
 			
 			if($data->count()){
 				foreach ($data as $k=>$value) {
-					
-					$number = $value->nomor_hp;
-					$country_code = '62';
-					$new_number = substr_replace($number, $country_code, 0, ($number[0] == '0'));
-					$data = [
-						 'nama_anggota'	=> $value->nama_lengkap
-						,'nip'	=> $value->nip
-						,'nohp'	=> $new_number
-						,'id_kelompok'	=> $request->id_kelompok
-					];
-					Nomor::create($data);
+					$klp = Kelompok::where('deskripsi','like','%'.$value->unit_kerja.'%')->first();
+					if($klp){
+						$number = $value->nomor_hp;
+						$country_code = '62';
+						$new_number = substr_replace($number, $country_code, 0, ($number[0] == '0'));
+						$data = [
+							 'nama_anggota'	=> $value->nama_lengkap
+							,'nip'	=> $value->nip
+							,'nohp'	=> $new_number
+							,'id_kelompok'	=> $klp->id
+						];
+						Nomor::create($data);
+					}
 				
 				}
 				
