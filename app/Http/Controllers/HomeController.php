@@ -24,9 +24,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+		$kelompok = Kelompok::dKelompok($request);
+		$nomor = Nomor::all()->count();
+        return view('home', compact('kelompok','nomor'));
     }
 	
 	public function view_kelompok()

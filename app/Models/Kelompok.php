@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Kelompok extends Model
 {
@@ -29,4 +30,12 @@ class Kelompok extends Model
     {
         return $this->hasMany('App\Models\Nomor', 'id_kelompok');
     }
+	
+	public function scopeDKelompok($query, Request $request)
+	{
+		$query = \DB::table('kelompok');
+		$query->select(\DB::Raw(' count(distinct nama_kelompok) as jml_kantor, count( deskripsi) as jml_bagian '));
+		return $query->first();
+
+	}
 }
