@@ -15,8 +15,18 @@ class SMSController extends Controller
 	public function list()
 	{
 		
-		$data = Campaign::with('kelompok')->get();
+		$data = Campaign::with('kelompok','sms')->get();
+		
+		
 		return view('index_campaign', compact('data'));
+	}
+    
+	public function list_sms($id_campaign)
+	{
+		
+		$data = SMS::where('id_campaign',$id_campaign)->get();		
+		
+		return view('index_sms', compact('data'));
 	}
 	
 	public function create_campaign()

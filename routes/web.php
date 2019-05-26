@@ -47,6 +47,7 @@ Route::group(['prefix'=>'sms'], function () {
 	Route::get('/', ['as'=>'sms', 'uses'=>'SMSController@list']);
 	Route::get('/create', ['as'=>'sms.create', 'uses'=>'SMSController@create_campaign']);
 	Route::post('/send', ['as'=>'sms.send', 'uses'=>'SMSController@send_campaign']);
+	Route::get('/list/{id}', ['as'=>'sms.list', 'uses'=>'SMSController@list_sms']);
 	
 });
 Route::group(['prefix'=>'nexmo'], function () {

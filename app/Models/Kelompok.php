@@ -23,7 +23,7 @@ class Kelompok extends Model
 	
 	public function getIsAdminAttribute()
     {
-        return $this->attributes['admin'] == 'yes';
+        // return $this->attributes['is_admin'] == 'yes';
     }
 	
 	public function nomor()

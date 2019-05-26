@@ -53,10 +53,10 @@
 			<thead>
 				<tr>
 					<th>No</th>
-					<th>ID Campaign</th>
 					<th>Tanggal</th>
 					<th>Tujuan (Bidang Kantor)</th>
 					<th>Isi SMS</th>
+					<th>Jumlah Penerima</th>
 					<th class="text-center">Aksi</th>
 				</tr>
 			</thead>
@@ -64,14 +64,14 @@
 				@foreach($data as $k=>$data)
 				<tr>
 					<td>{{ $k+1 }}</td>
-					<td>{{ $data->id }}</td>
 					<td>{{ date_format($data->created_at,'d-m-Y') }}</td>
 					<td>{{ $data->kelompok->nama_kelompok }} - {{ $data->kelompok->deskripsi }}</td>
 					<td>{{ $data->campaign_text }}</td>
+					<td>{{ $data->jumlah_sms }}</td>
 					<td>
-						<a href="">
+						<a href="{{ route('sms.list', $data->id) }}">
 							<button type="button" class="btn btn-info btn-xs">
-								<i class="icon-pencil7"></i> Detail
+								<i class="icon-eye2"></i> Detail
 							</button>
 						</a>
 					</td>

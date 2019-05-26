@@ -52,24 +52,24 @@
 		<table class="table datatable-basic">
 			<thead>
 				<tr>
+					<th>No.</th>
 					<th>Tujuan</th>
 					<th>Pesan</th>
 					<th>Status</th>
-					<th class="text-center">Aksi</th>
+					<th>ID SMS</th>
+					<th>Ket.</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($data as $data)
+				@foreach($data as $k=>$data)
 				<tr>
+					<td>{{ $k+1 }}</td>
 					<td>{{ $data->to }}</td>
-					<td>{{ $data->body }}</td>
-					<td>{{ $data->status }}</td>
+					<td>{{ substr($data->body,0,50).'....' }}</td>
+					<td>@if($data->status==1) <span class="label bg-success">Terkirim</span> @else <span class="label bg-danger">Tidak</span> @endif</td>
+					<td>{{ $data->message_id }}</td>
 					<td>
-						<a href="">
-							<button type="button" class="btn btn-info btn-xs">
-								<i class="icon-pencil7"></i> Aksi
-							</button>
-						</a>
+					{{ $data->desc }}
 					</td>
 				</tr>
 				@endforeach
