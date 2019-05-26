@@ -292,13 +292,18 @@ class HomeController extends Controller
 						$number = $value->nomor_hp;
 						$country_code = '62';
 						$new_number = substr_replace($number, $country_code, 0, ($number[0] == '0'));
-						$data = [
-							 'nama_anggota'	=> $value->nama_lengkap
-							,'nip'	=> $value->nip
-							,'nohp'	=> $new_number
-							,'id_kelompok'	=> $klp->id
-						];
-						Nomor::create($data);
+						// $data = [
+							 // 'nama_anggota'	=> $value->nama_lengkap
+							// ,'nip'	=> $value->nip
+							// ,'nohp'	=> $new_number
+							// ,'id_kelompok'	=> $klp->id
+						// ];
+						$nmr = Nomor::firstOrNew(['nip'=>$value->nip]);
+						$nmr->nama_anggota	= $value->nama_lengkap;
+						$nmr->nohp 			= $new_number;
+						$nmr->id_kelompok	= $klp->id;
+						$nmr->save();
+						
 					}
 				
 				}
