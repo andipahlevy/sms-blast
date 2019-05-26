@@ -21,7 +21,7 @@ class SMSController extends Controller
 	
 	public function create_campaign()
 	{
-		$kelompok = Kelompok::all();
+		$kelompok = Kelompok::orderBy('nama_kelompok','asc')->get();
 		return view('form_campaign', compact('kelompok'));
 	}
 	
