@@ -38,6 +38,7 @@
 			@endif
 			
 			<input type="hidden" name="id_kelompok" value="{{ Request::segment(4) }}"/>
+			<input type="hidden" name="nama_kelompok" value="{{ $kelompok->nama_kelompok }}"/>
 			
 			<div class="form-group">
 				<label>File Excel:</label>
