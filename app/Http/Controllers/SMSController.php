@@ -38,7 +38,7 @@ class SMSController extends Controller
 	public function send_campaign(Request $request)
 	{
 		try {
-			// \DB::beginTransaction();
+			\DB::beginTransaction();
 			
 			$idkelompok = $request->id_kelompok;
 			$remaining_balance = null;
@@ -48,12 +48,12 @@ class SMSController extends Controller
 				$nomor = Nomor::where('id_kelompok', $id_kelompok)->get();
 				
 				if( count($nomor) < 1 ){
-					// \DB::rollback();
 					Campaign::find($camp->id)->delete();
 					$cklp = count($idkelompok);
 					$bdng =  $cklp > 1 ? 'Salah satu bidang' : 'Bidang';
 					\Session::flash('error', $bdng.' yang dipilih tidak memiliki daftar pegawai. SMS hanya akan terkirim ke bidang yang memiliki pegawai dan nomor HP');
 					if($cklp == 1){
+						\DB::rollback();
 						return redirect()->back();
 					}
 				}
@@ -104,15 +104,17 @@ class SMSController extends Controller
 			}
 			
 		}catch (\Throwable $e) {
+			\DB::rollback();
             $msg = 'Terjadi kesalahan pada backend ->'.$e->getMessage();
 			\Session::flash('error', $msg);
             return redirect()->back();
         }catch (\Exception $e) {
+            \DB::rollback();
             $msg = 'Terjadi kesalahan sistem silahkan tunggu beberapa saat dan ulangi kembali. Error messages ->'.$e->getMessage();
 			\Session::flash('error', $msg);
             return redirect()->back();
 		}
-		// \DB::commit();
+		\DB::commit();
 		
 		\Session::flash('success', 'Berhasil membuat campaign dan sedang memproses SMS');
 		return redirect()->route('sms');
