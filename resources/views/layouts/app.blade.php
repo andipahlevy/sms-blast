@@ -177,7 +177,7 @@
 
 					<!-- Footer -->
 					<div class="footer text-muted">
-						&copy; 2019. <a href="#">SMS Blast</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Videv</a>
+						&copy; 2019. <a href="#">SMS Blast</a> by <a href="http://andilevi.com" target="_blank">Videv</a>
 					</div>
 					<!-- /footer -->
 
