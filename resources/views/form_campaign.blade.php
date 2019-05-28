@@ -56,7 +56,7 @@ function textCounter(field, cnt, maxlimit) {
 			
 			<div class="form-group">
 				<label>Tujuan:</label>
-				<select name="id_kelompok" id="" class="select-search">
+				<select multiple="multiple" name="id_kelompok[]" id="" class="select-search">
 					<option value="">-- Pilih --</option>
 					@foreach($kelompok as $klp)
 					<option value="{{ $klp->id }}"> {{ $klp->nama_kelompok }} - {{ $klp->deskripsi }} ({{ $klp->nomor->count() }} pegawai) </option>

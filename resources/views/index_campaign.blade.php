@@ -44,7 +44,7 @@
 			@if (\Session::has('error'))
 				<div class="alert alert-warning no-border">
 					<button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
-					<span class="text-semibold">Terjadi kesalahan!</span> {{ \Session::get('error') }}
+					{{ \Session::get('error') }}
 				</div>
 			@endif
 		</div>
@@ -64,7 +64,7 @@
 				@foreach($data as $k=>$data)
 				<tr>
 					<td>{{ $k+1 }}</td>
-					<td>{{ date_format($data->created_at,'d-m-Y') }}</td>
+					<td>{{ date_format($data->created_at,'d-m-Y H:i') }}</td>
 					<td>{{ $data->kelompok->nama_kelompok }} - {{ $data->kelompok->deskripsi }}</td>
 					<td>{{ $data->campaign_text }}</td>
 					<td>{{ $data->jumlah_sms }}</td>

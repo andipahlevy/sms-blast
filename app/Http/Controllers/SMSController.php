@@ -15,7 +15,7 @@ class SMSController extends Controller
 	public function list()
 	{
 		
-		$data = Campaign::with('kelompok','sms')->get();
+		$data = Campaign::with('kelompok','sms')->orderBy('created_at','desc')->get();
 		
 		
 		return view('index_campaign', compact('data'));
@@ -38,58 +38,69 @@ class SMSController extends Controller
 	public function send_campaign(Request $request)
 	{
 		try {
-			\DB::beginTransaction();
+			// \DB::beginTransaction();
 			
+			$idkelompok = $request->id_kelompok;
 			$remaining_balance = null;
-			$camp = Campaign::create($request->only('id_kelompok','campaign_text'));
-			$nomor = Nomor::where('id_kelompok', $request->id_kelompok)->get();
 			
-			if( count($nomor) < 1 ){
-				\DB::rollback();
-				\Session::flash('error', 'Bidang yang dipilih tidak memiliki nomor handphone');
-				return redirect()->back();
-			}
-			
-			foreach( $nomor as $no ){
+			foreach($idkelompok as $id_kelompok){
+				$camp = Campaign::create(['id_kelompok'=>$id_kelompok, 'campaign_text'=>$request->campaign_text]);
+				$nomor = Nomor::where('id_kelompok', $id_kelompok)->get();
 				
-				$resp = $this->api_nexmo( $no->nohp, $request->campaign_text );
-				
-				if( $resp['code'] == 1 ){
-					\Log::info( $resp['contents'] );
-					$message_id 	= $resp['contents']['message-id'];
-					$message_price 	= $resp['contents']['message-price'];
-					$status 		= 1;
-					
-					$remaining_balance = $resp['contents']['remaining-balance'];
-					$last_price = $resp['contents']['message-price'];
-					
-				}else if( $resp['code'] == 2 ){
-					$status 		= 0;
-					$desc			= 'Error Nexmo API. '.@$resp['contents']['status'];
-				}else if( $resp['code'] == 3 ){
-					$status 		= 0;
-					$desc 			= $resp['contents'];
-				}else{
-					$status 		= 0;
+				if( count($nomor) < 1 ){
+					// \DB::rollback();
+					Campaign::find($camp->id)->delete();
+					$cklp = count($idkelompok);
+					$bdng =  $cklp > 1 ? 'Salah satu bidang' : 'Bidang';
+					\Session::flash('error', $bdng.' yang dipilih tidak memiliki daftar pegawai. SMS hanya akan terkirim ke bidang yang memiliki pegawai dan nomor HP');
+					if($cklp == 1){
+						return redirect()->back();
+					}
 				}
 				
-				$data = [
-					 'id_campaign'		=> $camp->id
-					,'to'				=> $no->nohp
-					,'body'				=> $request->campaign_text
-					,'message_id'		=> $message_id ?? ''
-					,'message_price'	=> $message_price ?? ''
-					,'status'			=> $status 
-					,'desc'				=> $desc ?? ''
-				];
-				SMS::create( $data );	
-			}
-			
-			if( $remaining_balance != null ){
-				$N = Nexmo::find( 1 );
-				$N->remaining_balance = $remaining_balance;
-				$N->last_price = $last_price;
-				$N->save();	
+				if(count($nomor) > 0){
+					foreach( $nomor as $no ){
+						
+						$resp = $this->api_nexmo( $no->nohp, $request->campaign_text );
+						
+						if( $resp['code'] == 1 ){
+							\Log::info( $resp['contents'] );
+							$message_id 	= $resp['contents']['message-id'];
+							$message_price 	= $resp['contents']['message-price'];
+							$status 		= 1;
+							
+							$remaining_balance = $resp['contents']['remaining-balance'];
+							$last_price = $resp['contents']['message-price'];
+							
+						}else if( $resp['code'] == 2 ){
+							$status 		= 0;
+							$desc			= 'Error Nexmo API. '.@$resp['contents']['status'];
+						}else if( $resp['code'] == 3 ){
+							$status 		= 0;
+							$desc 			= $resp['contents'];
+						}else{
+							$status 		= 0;
+						}
+						
+						$data = [
+							 'id_campaign'		=> $camp->id
+							,'to'				=> $no->nohp
+							,'body'				=> $request->campaign_text
+							,'message_id'		=> $message_id ?? ''
+							,'message_price'	=> $message_price ?? ''
+							,'status'			=> $status 
+							,'desc'				=> $desc ?? ''
+						];
+						SMS::create( $data );	
+					}
+					
+				}
+				if( $remaining_balance != null ){
+					$N = Nexmo::find( 1 );
+					$N->remaining_balance = $remaining_balance;
+					$N->last_price = $last_price;
+					$N->save();	
+				}	
 			}
 			
 		}catch (\Throwable $e) {
@@ -101,7 +112,7 @@ class SMSController extends Controller
 			\Session::flash('error', $msg);
             return redirect()->back();
 		}
-		\DB::commit();
+		// \DB::commit();
 		
 		\Session::flash('success', 'Berhasil membuat campaign dan sedang memproses SMS');
 		return redirect()->route('sms');

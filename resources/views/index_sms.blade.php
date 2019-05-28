@@ -26,7 +26,7 @@
 		</div>
 
 		<div class="panel-body">
-			<a href="{{ route('data.kelompok.add') }}">
+			<a href="{{ route('sms.create') }}">
 				<button type="button" class="btn bg-teal-400 btn-labeled"><b><i class="icon-plus3"></i></b> 
 					Kirim SMS
 				</button>
