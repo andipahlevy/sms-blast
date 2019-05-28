@@ -122,7 +122,7 @@ class SMSController extends Controller
 	
 	public function api_nexmo($to, $text)
 	{
-		$basic  = new \Nexmo\Client\Credentials\Basic('6db826f8', 'lY5Ps8MFyVQKGomR');
+		$basic  = new \Nexmo\Client\Credentials\Basic(env('NEXMO_ID'), env('NEXMO_KEY'));
 		$client = new \Nexmo\Client($basic);
 
 		try {
