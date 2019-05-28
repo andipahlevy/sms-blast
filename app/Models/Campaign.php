@@ -11,6 +11,7 @@ class Campaign extends Model
 	protected $fillable = [
 		'id_kelompok',
 		'campaign_text',
+		'perihal',
 	]; 
 	protected $hidden = [
 		'sms',

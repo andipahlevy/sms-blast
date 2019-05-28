@@ -44,7 +44,7 @@ class SMSController extends Controller
 			$remaining_balance = null;
 			
 			foreach($idkelompok as $id_kelompok){
-				$camp = Campaign::create(['id_kelompok'=>$id_kelompok, 'campaign_text'=>$request->campaign_text]);
+				$camp = Campaign::create(['id_kelompok'=>$id_kelompok, 'perihal'=>$request->perihal, 'campaign_text'=>$request->campaign_text]);
 				$nomor = Nomor::where('id_kelompok', $id_kelompok)->get();
 				
 				if( count($nomor) < 1 ){

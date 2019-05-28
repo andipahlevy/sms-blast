@@ -54,6 +54,7 @@
 				<tr>
 					<th>No</th>
 					<th>Tanggal</th>
+					<th>Perihal</th>
 					<th>Tujuan (Bidang Kantor)</th>
 					<th>Isi SMS</th>
 					<th>Jumlah Penerima</th>
@@ -65,6 +66,7 @@
 				<tr>
 					<td>{{ $k+1 }}</td>
 					<td>{{ date_format($data->created_at,'d-m-Y H:i') }}</td>
+					<td>{{ $data->perihal }}</td>
 					<td>{{ $data->kelompok->nama_kelompok }} - {{ $data->kelompok->deskripsi }}</td>
 					<td>{{ $data->campaign_text }}</td>
 					<td>{{ $data->jumlah_sms }}</td>

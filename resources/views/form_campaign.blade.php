@@ -55,6 +55,11 @@ function textCounter(field, cnt, maxlimit) {
 			@endif
 			
 			<div class="form-group">
+				<label>Perihal:</label>
+				<input type="text" class="form-control" name="perihal" required=""/>
+			</div>			
+			
+			<div class="form-group">
 				<label>Tujuan:</label>
 				<select multiple="multiple" name="id_kelompok[]" id="" class="select-search">
 					<option value="">-- Pilih --</option>
