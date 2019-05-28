@@ -201,9 +201,9 @@
 		data:'',
 		cache:false,
 		success:function(rsp){
-			$('#saldoku').html(rsp);
+			$('#saldoku').html('Sisa '+rsp);
 			if($('#kuota_info').length > 0){
-				$('#kuota_info').html('Pulsa anda '+rsp+' kali');
+				$('#kuota_info').html('Tersisa '+rsp);
 			}
 		}
 	});
